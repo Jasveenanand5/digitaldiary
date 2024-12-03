@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History & Currency Info</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add basic styling for pop-up messages */
+        .popup {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 10;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Learn About UK Banks & Currency</h1>
+
+        <!-- Pop-up messages will go here -->
+        <div id="popup-container"></div>
+
+        <!-- Button to go back to the purchase form page -->
+        <button onclick="goBack()">Go Back to Purchase Form</button>
+    </div>
+
+    <script>
+        // Array of questions and answers to show as pop-ups
+        const messages = [
+            {
+                question: "When was the Bank of England founded?",
+                answer: "The Bank of England was founded in 1694 to act as the government’s banker and debt manager."
+            },
+            {
+                question: "What is cash?",
+                answer: "Cash refers to physical money such as coins and paper notes that are used to make payments for goods and services."
+            },
+            {
+                question: "How does currency work?",
+                answer: "Currency refers to the system of money used in a particular country or region. It allows people to trade goods and services and is typically issued by a central authority, such as a government or central bank."
+            },
+            {
+                question: "What are the main types of currency in the UK?",
+                answer: "The main currency in the UK is the British Pound (£). It comes in coins (1p, 2p, 5p, 10p, 20p, 50p, £1, £2) and banknotes (£5, £10, £20, £50)."
+            },
+            {
+                question: "How did the UK switch from the gold standard?",
+                answer: "The UK left the gold standard in 1931 due to the economic pressures of the Great Depression. This allowed the Bank of England to print more money and control the economy more freely."
+            },
+            {
+                question: "What is a central bank?",
+                answer: "A central bank is a financial institution that manages a country's currency, money supply, and interest rates. In the UK, the Bank of England performs these roles."
+            },
+            {
+                question: "What is the role of the Bank of England?",
+                answer: "The Bank of England is the central bank of the United Kingdom. It manages the country's monetary policy, regulates banks, and ensures financial stability."
+            },
+            {
+                question: "What is the difference between cash and digital currency?",
+                answer: "Cash refers to physical currency (coins and notes), while digital currency exists only in electronic form and can include credit/debit cards, cryptocurrency, or digital bank transfers."
+            }
+        ];
+
+        // Function to show random pop-ups
+        function showRandomPopup() {
+            // Get a random message from the array
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+            // Create a new pop-up div
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.innerHTML = `<strong>${randomMessage.question}</strong><br>${randomMessage.answer}`;
+
+            // Append the pop-up to the container
+            document.getElementById('popup-container').appendChild(popup);
+
+            // Randomize the position of the pop-up
+            const maxX = window.innerWidth - popup.offsetWidth;
+            const maxY = window.innerHeight - popup.offsetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            popup.style.left = `${randomX}px`;
+            popup.style.top = `${randomY}px`;
+
+            // Show the pop-up
+            popup.style.display = 'block';
+
+            // Make the pop-up disappear after a random time between 2-5 seconds
+            const randomTime = Math.floor(Math.random() * (5000 - 2000) + 2000);
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, randomTime);
+        }
+
+        // Call the showRandomPopup function every 3-7 seconds to randomly display messages
+        setInterval(showRandomPopup, Math.floor(Math.random() * (7000 - 3000) + 3000));
+
+        // Function to go back to the purchase form page
+        function goBack() {
+            window.location.href = 'index.html'; // Redirects to the index.html page
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
