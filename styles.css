@@ -8,7 +8,6 @@
 /* Body Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f2f6fc; /* Soft background color */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +24,7 @@ body {
     width: 100%;
     max-width: 450px;
     text-align: center;
+    border: 4px solid #000; /* Thick black border */
 }
 
 /* Title Styling */
@@ -78,7 +78,7 @@ button {
     background-color: #4CAF50; /* Green button */
     color: white;
     padding: 12px 20px;
-    border: 2px solid #4CAF50;
+    border: 4px solid #000; /* Thick black border */
     border-radius: 6px;
     font-size: 1.1rem;
     cursor: pointer;
@@ -117,10 +117,40 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
 }
 
-/* Optional: Hover effect for pop-ups */
 .popup:hover {
     background-color: #e6f7ff; /* Change background color on hover */
     border-color: #0066cc; /* Change border color on hover */
+}
+
+/* Page-Specific Styling */
+
+/* Index Page Background */
+body {
+    background-color: #f2f6fc; /* Light blue background for index page */
+}
+
+/* History Page Background */
+body.history-page {
+    background-color: #f4f4f9; /* Slightly lighter background for history page */
+}
+
+/* Go Back Button Styling (for history.html) */
+.go-back-button {
+    background-color: #ff6f61; /* Red color for Go Back button */
+    color: white;
+    padding: 12px 20px;
+    border: 4px solid #000;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button Hover Effect for Go Back */
+.go-back-button:hover {
+    background-color: #e85c4a;
+    transform: translateY(-2px);
 }
 
 /* Additional Responsive Styling */
@@ -142,13 +172,17 @@ button:hover {
         font-size: 1rem;
     }
 
-    /* Adjust pop-up styles for small screens */
+    .go-back-button {
+        font-size: 1rem;
+    }
+
     .popup {
         width: 200px;
         height: 120px;
         font-size: 0.9rem;
     }
 }
+
 
 
 

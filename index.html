@@ -10,12 +10,10 @@
     <div class="container">
         <h1>Purchase Item</h1>
 
-        <!-- Display Random Pay Amount -->
         <div class="payment-amount">
             <strong>Amount to Pay: £<span id="random-amount"></span></strong>
         </div>
 
-        <!-- Purchase Form -->
         <form id="purchase-form" onsubmit="return handleSubmit(event)">
             <div class="input-group">
                 <label for="name">Full Name:</label>
@@ -36,13 +34,35 @@
             <button type="submit">Submit Purchase</button>
         </form>
 
-        <!-- Response Message -->
         <div id="response-message"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function getRandomAmount() {
+            return (Math.random() * (1000 - 10) + 10).toFixed(2);
+        }
+
+        document.getElementById('random-amount').textContent = getRandomAmount();
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const responseMessage = document.getElementById('response-message');
+            responseMessage.innerHTML = "<h2>Thank you for your purchase!</h2>";
+
+            setTimeout(function() {
+                window.location.href = 'history.html';
+            }, 3000);
+
+            return false;
+        }
+    </script>
 </body>
 </html>
+
+
+
+
 
 
 
