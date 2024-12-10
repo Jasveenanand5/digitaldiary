@@ -101,6 +101,28 @@ button:hover {
     display: none;
 }
 
+/* Pop-up Styling */
+.popup {
+    display: none;
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 15px;
+    margin: 10px;
+    border: 2px solid #333; /* Dark border */
+    border-radius: 8px;
+    position: absolute;
+    z-index: 10;
+    width: 250px;
+    height: 150px;
+    overflow: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+/* Optional: Hover effect for pop-ups */
+.popup:hover {
+    background-color: #e6f7ff; /* Change background color on hover */
+    border-color: #0066cc; /* Change border color on hover */
+}
+
 /* Additional Responsive Styling */
 @media (max-width: 480px) {
     .container {
@@ -119,7 +141,17 @@ button:hover {
     button {
         font-size: 1rem;
     }
+
+    /* Adjust pop-up styles for small screens */
+    .popup {
+        width: 200px;
+        height: 120px;
+        font-size: 0.9rem;
+    }
 }
+
+
+
 
 
 

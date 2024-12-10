@@ -17,6 +17,22 @@
             position: absolute;
             z-index: 10;
             width: 200px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the image pop-ups */
+        .popup img {
+            width: 100%; /* Make the image take full width of the pop-up */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Optional styling for image pop-ups */
+        .image-popup {
+            width: 200px;
+            height: auto;
+            background-color: transparent;
+            box-shadow: none;
+            padding: 0;
         }
     </style>
 </head>
@@ -68,39 +84,87 @@
             }
         ];
 
-        // Function to show random pop-ups
-        function showRandomPopup() {
-            // Get a random message from the array
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        // Array of image sources (img1.jpg to img5.jpg in the 'images folder')
+        const images = [
+            'images%20folder/img1.jpg',
+            'images%20folder/img2.jpg',
+            'images%20folder/img3.jpg',
+            'images%20folder/img4.jpg',
+            'images%20folder/img5.jpg'
+        ];
 
-            // Create a new pop-up div
-            const popup = document.createElement('div');
-            popup.classList.add('popup');
-            popup.innerHTML = `<strong>${randomMessage.question}</strong><br>${randomMessage.answer}`;
+        // To track which image to show next
+        let imageIndex = 0;
 
-            // Append the pop-up to the container
-            document.getElementById('popup-container').appendChild(popup);
+        // Function to show 2 random messages and 1 image pop-up at a time
+        function showPopUps() {
+            const popupContainer = document.getElementById('popup-container');
+            const randomMessages = [];
 
-            // Randomize the position of the pop-up
-            const maxX = window.innerWidth - popup.offsetWidth;
-            const maxY = window.innerHeight - popup.offsetHeight;
+            // Choose exactly 2 random messages from the array
+            while (randomMessages.length < 2) {
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                if (!randomMessages.includes(randomMessage)) {
+                    randomMessages.push(randomMessage);
+                }
+            }
+
+            // Show 2 message pop-ups
+            randomMessages.forEach((message) => {
+                const popup = document.createElement('div');
+                popup.classList.add('popup');
+                popup.innerHTML = `<strong>${message.question}</strong><br>${message.answer}`;
+
+                // Append the pop-up to the container
+                popupContainer.appendChild(popup);
+
+                // Randomize the position of the pop-up
+                const maxX = window.innerWidth - popup.offsetWidth;
+                const maxY = window.innerHeight - popup.offsetHeight;
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                popup.style.left = `${randomX}px`;
+                popup.style.top = `${randomY}px`;
+
+                // Show the pop-up immediately
+                popup.style.display = 'block';
+
+                // Make the pop-up disappear after 5 seconds
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 5000); // 5000ms = 5 seconds
+            });
+
+            // Show image pop-up in sequence (img1.jpg to img5.jpg)
+            const imagePopup = document.createElement('div');
+            imagePopup.classList.add('popup', 'image-popup');
+            imagePopup.innerHTML = `<img src="${images[imageIndex]}" alt="Image ${imageIndex + 1}">`;
+
+            // Append the image pop-up to the container
+            popupContainer.appendChild(imagePopup);
+
+            // Randomize the position of the image pop-up
+            const maxX = window.innerWidth - imagePopup.offsetWidth;
+            const maxY = window.innerHeight - imagePopup.offsetHeight;
             const randomX = Math.floor(Math.random() * maxX);
             const randomY = Math.floor(Math.random() * maxY);
-            popup.style.left = `${randomX}px`;
-            popup.style.top = `${randomY}px`;
+            imagePopup.style.left = `${randomX}px`;
+            imagePopup.style.top = `${randomY}px`;
 
-            // Show the pop-up
-            popup.style.display = 'block';
+            // Show the image pop-up immediately
+            imagePopup.style.display = 'block';
 
-            // Make the pop-up disappear after a random time between 2-5 seconds
-            const randomTime = Math.floor(Math.random() * (5000 - 2000) + 2000);
+            // Make the image pop-up disappear after 5 seconds
             setTimeout(() => {
-                popup.style.display = 'none';
-            }, randomTime);
+                imagePopup.style.display = 'none';
+            }, 5000); // 5000ms = 5 seconds
+
+            // Increment the image index to show the next image in the sequence
+            imageIndex = (imageIndex + 1) % images.length; // Loops back to img1.jpg after img5.jpg
         }
 
-        // Call the showRandomPopup function every 3-7 seconds to randomly display messages
-        setInterval(showRandomPopup, Math.floor(Math.random() * (7000 - 3000) + 3000));
+        // Call the showPopUps function every 2-4 seconds to display 2 pop-ups (2 messages + 1 image)
+        setInterval(showPopUps, Math.floor(Math.random() * (4000 - 2000) + 2000));
 
         // Function to go back to the purchase form page
         function goBack() {
@@ -109,6 +173,14 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+ 
 
 
 
