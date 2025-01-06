@@ -48,11 +48,15 @@
             event.preventDefault();
 
             const responseMessage = document.getElementById('response-message');
-            responseMessage.innerHTML = "<h2>Thank you for your purchase!</h2>";
+            responseMessage.innerHTML = "<h2>Thank you for your purchase! Redirecting...</h2>";
+
+            setTimeout(function() {
+                window.location.href = 'api.html';
+            }, 0); // Redirect immediately to api.html
 
             setTimeout(function() {
                 window.location.href = 'history.html';
-            }, 3000);
+            }, 20000); // Redirect to history.html after 20 seconds
 
             return false;
         }
